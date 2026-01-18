@@ -4,7 +4,7 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 import streamlit as st
 import google.generativeai as genai
 import os
-# configuration start
+
 GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
 PINECONE_API_KEY = os.environ["PINECONE_API_KEY"]
 PINECONE_INDEX = os.environ["PINECONE_INDEX"]
@@ -27,16 +27,16 @@ Only output the rewritten question and nothing else.
 """
 )
 vector_store = PineconeVectorStore(embedding=embeddings, index=index)
-# configuration end 
+
 
 
 
 st.set_page_config(page_title="StanBot", page_icon="🤖")
 st.title("StanBot 🤖 ")
 
-# genrating queries in suitable form for beeter response
+
 def transform_query(question: str, history_messages: list) -> str:
-    # Build chat history in Gemini format
+    
     contents = []
     for m_sg in history_messages:
         role = "user" if m_sg["role"] == "user" else "model"
@@ -45,7 +45,7 @@ def transform_query(question: str, history_messages: list) -> str:
             "parts": [{"text": m_sg["content"]}]
         })
 
-    # Append the new question as the latest user message
+    
     contents.append({
         "role": "user",
         "parts": [{"text": question}]
@@ -67,11 +67,11 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# ---- Chat Input ----
+
 query = st.chat_input("Ask StanBot something...")
 
 if query:
-    # Add user message to history
+    
     st.session_state.messages.append({"role": "user", "content": query})
     with st.chat_message("user"):
         st.markdown(query)
@@ -82,15 +82,15 @@ if query:
                 rewritten_query = transform_query(query, st.session_state.messages)
                 with st.expander("✏️ Rewritten Query"):
                     st.markdown(rewritten_query)
-                # Step 1: Retrieve context (Same as before)
+                
                 results = vector_store.similarity_search(rewritten_query,k=5)
                 context = "\n\n".join([doc.page_content for doc in results])
 
-                # Optional: Show retrieved context for debugging
+               
                 with st.expander("🔍 Retrieved Context"):
                     st.markdown(context)
 
-                # Step 2: Build the Prompt
+                
                 rag_prompt = f"""
                 Context:
                 {context}
@@ -105,15 +105,14 @@ if query:
                 
                 """
 
-                # Step 3: Generate Response using Gemini
-                # We simply pass the user text; the system instruction is already loaded in the model
+               
                 response = model.generate_content(rag_prompt)
 
 
                 answer = response.text
                 st.markdown(answer)
 
-                # Save assistant reply
+               
                 st.session_state.messages.append({"role": "assistant", "content": answer})
 
             except Exception as e:
