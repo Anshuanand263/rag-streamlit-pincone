@@ -32,14 +32,14 @@ vector_store = PineconeVectorStore(embedding=embeddings, index=index)
 
 
 st.set_page_config(page_title="StanBot", page_icon="🤖")
-st.title("StanBot 🤖 ")
+st.title("StanBot  ")
 
 
-def transform_query(question: str, history_messages: list) -> str:
+def transform_query(question, history_messages):
     
     contents = []
     for m_sg in history_messages:
-        role = "user" if m_sg["role"] == "user" else "model"
+        role = "user" if m_sg["role"] == "user" else "assistant"
         contents.append({
             "role": role,
             "parts": [{"text": m_sg["content"]}]
@@ -80,14 +80,14 @@ if query:
         with st.spinner("Thinking (Gemini)..."):
             try:
                 rewritten_query = transform_query(query, st.session_state.messages)
-                with st.expander("✏️ Rewritten Query"):
+                with st.expander(" Rewritten Query"):
                     st.markdown(rewritten_query)
                 
                 results = vector_store.similarity_search(rewritten_query,k=5)
                 context = "\n\n".join([doc.page_content for doc in results])
 
                
-                with st.expander("🔍 Retrieved Context"):
+                with st.expander(" Retrieved Context"):
                     st.markdown(context)
 
                 
