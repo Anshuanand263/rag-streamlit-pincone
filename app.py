@@ -31,8 +31,8 @@ vector_store = PineconeVectorStore(embedding=embeddings, index=index)
 
 
 
-st.set_page_config(page_title="StanBot", page_icon="🤖")
-st.title("StanBot  ")
+st.set_page_config(page_title="StanBot")
+st.title("StanBot for Dsa question")
 
 
 def transform_query(question, history_messages):
