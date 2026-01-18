@@ -39,7 +39,7 @@ def transform_query(question, history_messages):
     
     contents = []
     for m_sg in history_messages:
-        role = "user" if m_sg["role"] == "user" else "assistant"
+        role = "user" if m_sg["role"] == "user" else "model"
         contents.append({
             "role": role,
             "parts": [{"text": m_sg["content"]}]
