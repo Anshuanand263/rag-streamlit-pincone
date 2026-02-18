@@ -1,11 +1,24 @@
 from time import sleep
-from langchain_community.document_loaders import PyPDFLoader
+from pdf2image import convert_from_path
 
-file_path = "./Dsa.pdf"
-loader = PyPDFLoader(file_path)
+# Convert each page of the PDF into an image
+pages = convert_from_path("ordinances.pdf")
+import pytesseract
+
+text = ""
+for page in pages:
+    text += pytesseract.image_to_string(page)
+with open("output.txt", "w", encoding="utf-8") as f:
+    f.write(text)
+
+# documentation for chunking
+from langchain_community.document_loaders import TextLoader
+
+# Load text file
+loader = TextLoader("output.txt",encoding="utf-8")
 documents = loader.load()
 
-genai.configure(api_key=GEMINI_API_KEY)
+
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
@@ -15,10 +28,8 @@ docs = splitter.split_documents(documents)
 print(f" Created {len(docs)} chunks")
 
 
-
-
-
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+genai.configure(api_key=GEMINI_API_KEY)
 
 embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
 

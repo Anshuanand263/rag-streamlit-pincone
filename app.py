@@ -32,7 +32,7 @@ vector_store = PineconeVectorStore(embedding=embeddings, index=index)
 
 
 st.set_page_config(page_title="StanBot")
-st.title("StanBot for Dsa question")
+st.title("StanBot for  Oridances query")
 
 
 def transform_query(question, history_messages):
@@ -68,7 +68,7 @@ for msg in st.session_state.messages:
         st.markdown(msg["content"])
 
 
-query = st.chat_input("Ask StanBot something...")
+query = st.chat_input("Ask Your query...")
 
 if query:
     
@@ -77,7 +77,7 @@ if query:
         st.markdown(query)
 
     with st.chat_message("assistant"):
-        with st.spinner("Thinking (Gemini)..."):
+        with st.spinner("Thinking ..."):
             try:
                 rewritten_query = transform_query(query, st.session_state.messages)
                 with st.expander(" Rewritten Query"):
@@ -97,11 +97,23 @@ if query:
 
                 Question:
                 {rewritten_query}
-                 You have to behave like a Data Structure and Algorithm Expert.
-    You will be given a context of relevant information and a user question.
-    Your task is to answer the user's question based ONLY on the provided context.
-    If the answer is not in the context, you must say "I could not find the answer in the provided document.
-    Keep your answers clear, concise, and educational.
+                     You are a compliance-focused AI assistant for official college ordinance documents.
+
+Answer strictly and exclusively from the provided context.
+If the information is partially available, only answer the part supported by the document.
+If the required information is missing, reply exactly:
+"I could not find the answer in the provided document."
+
+Never:
+- Add assumptions
+- Use prior knowledge
+- Interpret beyond written clauses
+- Provide legal advice beyond the document
+
+Maintain a formal, academic tone.
+Cite relevant section numbers when available.
+Keep answers precise and structured.
+
                 
                 """
 
