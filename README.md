@@ -4,6 +4,15 @@
 
 <p>A compact, student-friendly RAG demo that ingests documents (PDF / text), creates embeddings, stores vectors in Pinecone, and serves an interactive Streamlit question-answering UI with source attribution</p>
 <hr>
+<h2>Use Cases</h2>
+<ul>
+    <li><b>Enterprise Policy Chatbot:</b> Employees query HR policies and internal documents with source-backed answers.</li>
+    <li><b>Knowledge Base Assistant:</b> Semantic search across SOPs, technical docs, and company knowledge.</li>
+    <li><b>Customer Support Bot:</b> Answer product queries grounded in official manuals and FAQs.</li>
+    <li><b>Academic Research Assistant:</b> Interactive Q&A over research papers with citation support.</li>
+    <li><b>Legal & Compliance Search:</b> Retrieve specific clauses from contracts and regulatory documents.</li>
+</ul>
+<hr>
 <h2> Features</h2>
 <ul>
     <li>Semantic search using Pinecone vector store</li>
