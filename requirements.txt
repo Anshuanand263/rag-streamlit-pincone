@@ -1,8 +1,8 @@
+# rebuild trigger
 streamlit
 google-generativeai
 langchain
 langchain-pinecone
 langchain-google-genai
-
-python-dotenv
 pinecone
+python-dotenv
