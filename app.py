@@ -12,9 +12,7 @@ PINECONE_INDEX = os.environ["PINECONE_INDEX"]
 genai.configure(api_key=GEMINI_API_KEY)
 pc = Pinecone(api_key=PINECONE_API_KEY)
 index = pc.Index(PINECONE_INDEX)
-embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/embedding-001"
-)
+embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001", task_type="RETRIEVAL_QUERY")
 model = genai.GenerativeModel(
     model_name="gemini-2.5-flash"
 
