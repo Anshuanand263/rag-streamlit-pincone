@@ -4,6 +4,15 @@
 
 <p>A compact, student-friendly RAG demo that ingests documents (PDF / text), creates embeddings, stores vectors in Pinecone, and serves an interactive Streamlit question-answering UI with source attribution</p>
 <hr>
+
+<h2> Screenshots</h2>
+
+<p><b>Application Interface</b></p>
+<p align="center">
+  <img src="img1" width="45%">
+  <img src="img2" width="45%">
+</p>
+<hr>
 <h2>Use Cases</h2>
 <ul>
     <li><b>Enterprise Policy Chatbot:</b> Employees query HR policies and internal documents with source-backed answers.</li>
