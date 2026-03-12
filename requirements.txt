@@ -5,3 +5,4 @@ langchain-pinecone
 langchain-google-genai
 pinecone-client
 python-dotenv
+pinecone
