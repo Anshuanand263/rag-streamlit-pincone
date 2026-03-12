@@ -9,8 +9,8 @@
 
 <p><b>Application Interface</b></p>
 <p align="center">
-  <img src="img1" width="45%">
-  <img src="img2" width="45%">
+  <img src="img1.png" width="45%">
+  <img src="img2.png" width="45%">
 </p>
 <hr>
 <h2>Use Cases</h2>
